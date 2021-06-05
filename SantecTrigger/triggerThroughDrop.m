@@ -18,7 +18,7 @@ wStart= 1548;
 wStop = 1555;
 initWavelength = wStart: wStep: wStop + 10 - wStep;
 minTriggerStep = 1 / 2;
-triggerStep = 1
+triggerStep = 1;
 estimatedFSR = 0.8;
 triggerThreshold = 0.1;
 

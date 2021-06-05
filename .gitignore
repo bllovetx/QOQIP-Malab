@@ -1,2 +1,3 @@
-SantecTrigger/data/*
-SantecTrigger/output/*
+data
+output
+ref
