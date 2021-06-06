@@ -1,5 +1,6 @@
 % load data
-allData = importdata("data\Timetags_CH35_13dBm_DBT400_CH37-CH33_CH38-CH32_100s.dat");
+%allData = importdata("data\Timetags_CH35_13dBm_DBT400_CH37-CH33_CH38-CH32_100s.dat");
+allData = importdata("data\Timetags_10.0mW_30s.txt");
 channel1 = [];
 channel2 = [];
 channel3 = [];
@@ -17,7 +18,7 @@ for i = 1:length(allData)
     end
 end
 
-delays = -1000:0.1:1000;
+delays = -100:1:100;
 figure
 plot(delays, CoincidentCountCal(channel1, channel2, 1, delays));
 hold on
@@ -61,10 +62,10 @@ function coinCounts = CoincidentCountCal(channel_one, channel_two, window_ns, de
         curEnds   = channel_one(i) + endDelays;
         for j = 1:delayNum
             % update index of first ch2-stamp after each Win_start/end
-            while channel_two(startInds(j)) < curStarts(j) && startInds(j) < ch2Num
+            while startInds(j) <= ch2Num && channel_two(startInds(j)) < curStarts(j)
                 startInds(j) = startInds(j) + 1;
             end
-            while channel_two(endInds(j)) < curEnds(j) && endInds(j) < ch2Num
+            while endInds(j) <= ch2Num && channel_two(endInds(j)) < curEnds(j)
                 endInds(j) = endInds(j) + 1;
             end
             % calculate ch2 num in each window
